@@ -9,14 +9,14 @@ Q A B C D
 q A
 # Estados Finais:
 F D
-# Transi¸c~oes
+# Transições
 T A a A
 T A b A
 T A b B
-T B ^e C
+T B ê C
 T C b D
 T D a D
-T D ^e C
+T D ê C
 # Palavras
 P abababbababa
 P aaabaababaa
