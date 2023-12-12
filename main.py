@@ -1,4 +1,3 @@
-import numpy as np
 
 class Automato:
     def __init__(self) -> None:
@@ -8,6 +7,7 @@ class Automato:
         self.estado_inicial = ""
         self.estados_finais = []
         self.transicoes = []
+        
     
 
     def converter_afnde_para_afn(self):
@@ -18,7 +18,7 @@ class Automato:
         
         # a nova transiçao de um estado sera os estados pertencentes ao fecho desse estado 
         # entao exemplo B o fecho é B e C
-        # as novas transições de serao o fecho do estado que ele alcança com a letra a e o fecho do estado que C alcança com a letra a 
+        # as novas transições dele serao o fecho do estado que ele alcança com a letra a e o fecho do estado que C alcança com a letra a 
         # e assim segue para todas letras
         for estado in self.estados:
             fecho_estado = fecho[estado]
@@ -47,7 +47,97 @@ class Automato:
         return fec_lamb
     
     def conversor_afnd_afd(self):
-        pass
+        print("Convertendo AFND para AFD...")
+
+        new_state = ""
+        new_trans = []
+        aux= []
+        #para cada estado veremos as transiçoes dele com uma determinada letra se tiver mais de uma criamos um estado novo que e a junçao dos estados destinos com tal letra
+        #exemplo estado A com b vai para A, B e C então teremos um novo estado ABC
+        
+        
+        # for estado in self.estados:
+        #     for letra in self.alfabeto:
+        #         new_state = ""
+        #         for transicao in self.transicoes:
+        #             if transicao[0] == estado and transicao[1] == letra:
+        #                 #quando um estado lendo uma letra tiver multiplos estados 
+        #                 #cria se um estado novo que é juncao desses estados
+        #                 new_state += transicao[2]         
+        #         aux.append(new_state)
+
+
+        
+        #criar nova matriz de transições
+        #se o estado tiver apenas um estado destino lendo determinada letra a transicao dele permanece a mesma 
+        #agora se ele tiver multiplos estados destino lendo determinada letra a transicao dele vai ser o estado novo que é a juncao desses estados
+        #o estado resultante dessa junção tera as mesmas transições que os estados que o compoem exemplo ABC tem as mesmas transições que A, B e C
+        #exemplo A com b vai para A, B e C então teremos um novo estado ABC que com a letra b vai para ABC e com a letra a vai para A
+
+        for estado in self.estados:
+            for letra in self.alfabeto:
+                new_state = ""
+                for transicao in self.transicoes:
+                    if transicao[0] == estado and transicao[1] == letra:
+                        #quando um estado lendo uma letra tiver multiplos estados 
+                        #cria se um estado novo que é juncao desses estados
+                        new_state += transicao[2]
+                if new_state != "":
+                    new_trans.append((estado, letra, new_state))
+                aux.append(new_state)
+                
+        for q in aux:
+        #remover os estados que se repetem e os estados que já fazem parte de self.estados
+            if q == "" or q in self.estados:
+                aux.remove(q)
+            
+        aux = list(set(aux))
+        self.estados.append(aux)   
+        #para cada estado uniao exemplo DC vai para D e C e olha as transicoes deles
+        for qJunction in aux:
+            qlist = list(qJunction)
+            oldDestino = ""
+            for q in qlist:
+                #old = ""
+                for letra in self.alfabeto:
+                    
+                    new_state = ""
+                    for transicao in new_trans:
+                        if transicao[0] == q and transicao[1] == letra and (transicao[2] != oldDestino  ):
+                            oldDestino = transicao[2]
+                            new_trans.append((qJunction, letra, transicao[2]))
+                            
+                     
+        self.transicoes = new_trans
+        
+                            
+                    
+                    
+                    
+                    
+                
+                
+                        
+                    
+
+        
+
+                
+            
+            
+        
+        
+
+        
+            
+      
+          
+
+        
+  
+
+
+        
 
 
 
@@ -135,9 +225,9 @@ if __name__ == '__main__':
     print("\nTransições depois da conversão para afnd:")
     print(af.transicoes)
     
-    #af.conversor_afnd_afd()
-    #print("\nTransições depois da conversão para afd:")
-    #print(af.transicoes)
+    af.conversor_afnd_afd()
+    print("\nTransições depois da conversão para afd:")
+    print(af.transicoes)
     
     afdTeste = Automato()
     afdTeste = af
