@@ -1,4 +1,4 @@
-# Automato Finito com movimentos vazios
+# Automato Finito com movimentos vazios SEMPRE!!!!!!!
 # Este automato detecta qualquer string contendo bb
 # L(G) = (a|b)* bb (a|b)*
 # Alfabeto:

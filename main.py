@@ -9,8 +9,42 @@ class Automato:
         self.estados_finais = []
         self.transicoes = []
     
-    def conversor_afnde_afnd(self):
-        pass
+
+    def converter_afnde_para_afn(self):
+        print("Convertendo AFNDE para AFN...")
+        #fecho lambda dict
+        fecho = self.fecho_lambda()
+        new_transicoes = []
+        
+        # a nova transiçao de um estado sera os estados pertencentes ao fecho desse estado 
+        # entao exemplo B o fecho é B e C
+        # as novas transições de serao o fecho do estado que ele alcança com a letra a e o fecho do estado que C alcança com a letra a 
+        # e assim segue para todas letras
+        for estado in self.estados:
+            fecho_estado = fecho[estado]
+            for q in fecho_estado:
+                for transicao in self.transicoes:
+                    if transicao[0] == q and transicao[1] != 'ê':
+                        destino = fecho[transicao[2]]
+                        for estado_destino in destino:
+                            new_transicoes.append((estado, transicao[1], estado_destino))
+                            
+        self.transicoes = new_transicoes
+
+    def fecho_lambda(self):
+        fec_lamb = {}
+        
+        for estado in self.estados:
+            #fecho lambda de um estado sempre vai ser ele mesmo
+            fec_lamb[estado] = estado 
+            #fecho lambda de um estado vai ser ele mesmo mais os estados que ele alcança com lambda lambda = ê
+            for transicao in self.transicoes:
+                #se o estado atual for igual ao estado inicial da transição e a letra for lambda
+                if estado == transicao[0] and transicao[1] == 'ê':
+                    #adiciona o estado final da transição ao fecho lambda do estado atual
+                    fec_lamb[estado] += transicao[2]   
+        
+        return fec_lamb
     
     def conversor_afnd_afd(self):
         pass
@@ -68,12 +102,14 @@ if __name__ == '__main__':
                 af.palavras.append(partes[1])
 
     # Imprimindo as variaveis do automato
+    """   
     print('Alfabeto: ', af.alfabeto)
     print('Estados: ', af.estados)
     print('Estado Inicial: ', af.estado_inicial)
     print('Estados Finais: ', af.estados_finais)
     print('Transições: ', af.transicoes)
-    print('Palavras: ', af.palavras)
+    print('Palavras: ', af.palavras) 
+    """
     
     #escreva em um txt as informações do automato
     with open('out.txt', 'w') as arquivo:
@@ -91,7 +127,17 @@ if __name__ == '__main__':
             
         #resultado da verificação de cada palavra
         
+    print("Transições antes da conversão:")
+    print(af.transicoes)
+
+    af.converter_afnde_para_afn()
+
+    print("\nTransições depois da conversão para afnd:")
+    print(af.transicoes)
     
+    #af.conversor_afnd_afd()
+    #print("\nTransições depois da conversão para afd:")
+    #print(af.transicoes)
     
     afdTeste = Automato()
     afdTeste = af

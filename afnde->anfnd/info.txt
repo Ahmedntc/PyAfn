@@ -1,0 +1,1 @@
+Imagens contendo conversao manual de um afnde para afnd para certificar que o programa funciona corretamente
