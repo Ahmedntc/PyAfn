@@ -108,7 +108,7 @@ class Automato:
                                     
                                 prevTrans = (qJunction, letra, transicao[2])
                                 
-                                if currTrans[0] == currTrans[0] and prevTrans[1] == currTrans[1]:
+                                if currTrans[0] == prevTrans[0] and prevTrans[1] == currTrans[1]:
                                     new_state += currTrans[2]
                                 
             new_state = list(set(new_state))
