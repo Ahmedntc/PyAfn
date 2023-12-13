@@ -1,6 +1,6 @@
 #############################################################
 #
-#       Trabalho de Linguagens Formais e Autômatos
+#       Trabalho de Teoria da computação
 #              AHMED BAKRI E MATHEUS MIRANDA
 #                   12/12/2023
 #
