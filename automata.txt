@@ -22,3 +22,7 @@ P abababbababa
 P aaabaababaa
 P abb
 P abab
+P bba
+P bbb
+P abbaaaaabb
+P aaa

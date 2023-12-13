@@ -1,21 +1,8 @@
-Automato a ser testado e suas características: 
-
-Alfabeto A: a b
-Estados Q: A B C D
-Estado inicial q: A
-Estados finais F: D
-
-Transicoes originais: 
-T A a A
-T A b A
-T A b B
-T B ê C
-T C b D
-T D a D
-T D ê C
-
-Palavras: 
-P abababbababa
-P aaabaababaa
-P abb
-P abab
+M aceita a palavra <abababbababa>
+M rejeita a palavra <aaabaababaa>
+M aceita a palavra <abb>
+M rejeita a palavra <abab>
+M aceita a palavra <bba>
+M aceita a palavra <bbb>
+M aceita a palavra <abbaaaaabb>
+M rejeita a palavra <aaa>

@@ -1,0 +1,21 @@
+
+# Automato Convertido
+Alfabeto: a b
+Conjunto de estados Q: A B C D ABC DC ABCD ACD
+Estado inicial q: A
+Estado final F: D DC ABCD ACD
+Transições 
+T A a A
+T A b ABC
+T B b DC
+T C b DC
+T D a DC
+T D b DC
+T ABC a A
+T ABC b ABCD
+T DC a DC
+T DC b DC
+T ABCD a ACD
+T ABCD b ABCD
+T ACD a ACD
+T ACD b ABCD
