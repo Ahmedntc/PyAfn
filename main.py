@@ -239,7 +239,7 @@ def verificar_palavra(palavra, afd):
     for letra in palavra:
         # Lê cada linha da matriz
         for linha in afd.transicoes:
-            # Se o estado atual for o mesmo que o estado inicial e a letra for a mesma que a letra na matriz
+            # Se o estado da transicao for o mesmo que o estado atual e a letra for a mesma que a letra na matriz
             if linha[0] == atual and linha[1] == letra:
                 # Altera o estado atual para o estado na matriz
                 atual = linha[2]
