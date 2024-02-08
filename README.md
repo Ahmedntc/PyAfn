@@ -1,5 +1,4 @@
 # PyAfn
-## Link do vídeo explicativo : https://youtu.be/4f_fIyQgXsM
 ### Este programa,  recebe como entrada um autômato finito M = (Σ, Q, q0, δ, F) através de um txt que segue o seguinte formato.
 - `# Comentário`: qualquer linha iniciada com # deve ser ignorada;
 - `A alfabeto`: após o A devem seguir os símbolos terminais da linguagem (letras minúsculas) separados por
